@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<title>User Story</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+		<script type="text/javascript" src="app/lib/angular-v1.2.22.js"></script>
+		<script type="text/javascript" src="app/lib/angular-route-v1.2.22.js"></script>
+		<!-- The HTTP server will begin to serve the client library at /socket.io/socket.io.js -->
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		
+		
+		<!-- Services -->
+		<script type="text/javascript" src="app/js/services/authService.js"></script>
+		<script type="text/javascript" src="app/js/services/userService.js"></script>
+		<script type="text/javascript" src="app/js/services/storyService.js"></script>
+		
+		<!-- Controllers -->
+		<script type="text/javascript" src="app/js/controllers/mainCtrl.js"></script>
+		<script type="text/javascript" src="app/js/controllers/userCtrl.js"></script>
+		<script type="text/javascript" src="app/js/controllers/storyCtrl.js"></script>
+		
+		<!-- Filters -->
+		<script type="text/javascript" src="app/js/filters/reverseFilter.js"></script>
+		
+		<script type="text/javascript" src="app/app.routes.js"></script>
+		<script type="text/javascript" src="app/app.js"></script>
+
+
+	</head>
+	<body ng-controller="MainController as main">
+
+		<header>
+
+			<div class="navbar navbar-default">
+				<div class="container">
+
+					<div class="navbar-header">
+						<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>UserStory</a>
+					</div>
+
+					<ul class="nav navbar-nav">
+						<li><a href="/users"></a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+						<li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+						<li ng-if="main.loggedIn"><a href="#">Hello {{ main.user.username }}</a></li>
+						<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</header>
+
+		<main class="container">
+			<div ng-view></div>
+		</main>
+	</body>
+</html>
